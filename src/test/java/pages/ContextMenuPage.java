@@ -10,7 +10,9 @@ import javax.swing.*;
 import static org.bouncycastle.crypto.tls.ContentType.alert;
 
 public class ContextMenuPage extends BasePage{
+    public static final By HOT_SPOT = By.id("hot-spot");
     public ContextMenuPage(WebDriver driver) {
+
         super(driver);
     }
     public void openContextMenu(){
@@ -18,13 +20,13 @@ public class ContextMenuPage extends BasePage{
     }
     public void rightClickOnAnElement(){
         Actions actions = new Actions(driver);
-        actions.contextClick(driver.findElement(By.id("hot-spot"))).build().perform();
+        actions.contextClick(driver.findElement(HOT_SPOT)).build().perform();
     }
     public String getText(){
         Alert alert = driver.switchTo().alert();
         return alert.getText();
     }
-    public void alertClose(){
+    public void alertAccept(){
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }

@@ -7,7 +7,10 @@ import static org.testng.Assert.*;
 import java.io.File;
 
 public class FileUploadPage extends BasePage{
+    public static final By SELECT_FILE_BUTTON = By.id("file-upload");
+    public static final By UPLOAD_BUTTON = By.id("file-submit");
     public FileUploadPage(WebDriver driver) {
+
         super(driver);
     }
     public void openFileUploader(){
@@ -15,10 +18,10 @@ public class FileUploadPage extends BasePage{
     }
     public void downloadFile(){
         File file = new File("src/test/resources/i.webp");
-        driver.findElement(By.id("file-upload")).sendKeys(file.getAbsolutePath());
-        driver.findElement(By.id("file-submit")).click();
+        driver.findElement(SELECT_FILE_BUTTON).sendKeys(file.getAbsolutePath());
+        driver.findElement(UPLOAD_BUTTON).click();
     }
-    public  void equalsNames(){
-        assertEquals(driver.findElement(By.id("uploaded-files")).getText(),"i.webp","Не верное название файла");
+    public  String getTextFileUploader(){
+        return driver.findElement(By.id("uploaded-files")).getText();
     }
 }
